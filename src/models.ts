@@ -12,6 +12,23 @@ export class Rover {
         this.y = y;
         this.direction = direction;
     }
+    
+    moveForward() : void {
+        switch (this.direction) {
+            case 'north':
+                this.y++;
+                break;
+            case 'south':
+                this.y--;
+                break;
+            case 'east':
+                this.x++;
+                break;
+            case 'west':
+                this.x--;
+                break;
+        }
+    }
 }
 
 
