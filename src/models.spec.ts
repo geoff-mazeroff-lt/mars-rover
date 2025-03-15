@@ -1,4 +1,4 @@
-﻿import {Rover} from "./models";
+﻿import {Direction, Rover} from "./models";
 
 describe("rover model", () => {
     
@@ -46,39 +46,17 @@ describe("rover model", () => {
         expect(r).toEqual(expected);
     })
     
-    it("when facing north and turning left, direction changes to west", () => {
-        const r:Rover = new Rover(0, 0, 'north');
+    it.each([
+        ['north', 'west'],
+        ['south', 'east'],
+        ['east', 'north'],
+        ['west', 'south']
+    ] as [Direction, Direction][])("when facing %s and turning left, direction changes to %s", (start, end) => {
+        const r:Rover = new Rover(0, 0, start);
 
         r.turnLeft();
 
-        const expected = new Rover(0, 0, 'west');
+        const expected = new Rover(0, 0, end);
         expect(r).toEqual(expected);
-    })
-
-    it("when facing south and turning left, direction changes to east", () => {
-        const r:Rover = new Rover(0, 0, 'south');
-
-        r.turnLeft();
-
-        const expected = new Rover(0, 0, 'east');
-        expect(r).toEqual(expected);
-    })
-
-    it("when facing east and turning left, direction changes to north", () => {
-        const r:Rover = new Rover(0, 0, 'east');
-
-        r.turnLeft();
-
-        const expected = new Rover(0, 0, 'north');
-        expect(r).toEqual(expected);
-    })
-
-    it("when facing west and turning left, direction changes to south", () => {
-        const r:Rover = new Rover(0, 0, 'west');
-
-        r.turnLeft();
-
-        const expected = new Rover(0, 0, 'south');
-        expect(r).toEqual(expected);
-    })
+    });
 })

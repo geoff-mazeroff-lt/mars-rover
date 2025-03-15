@@ -1,5 +1,5 @@
 ﻿// This is a sum-type / union-type
-type Direction = 'north' | 'south' | 'east' | 'west';
+export type Direction = 'north' | 'south' | 'east' | 'west';
 
 // Rover as a class -- more common than the verbose version below; also found in Angular that expects classes
 export class Rover {
