@@ -1,7 +1,7 @@
 ﻿// This is a sum-type / union-type
 type Direction = 'north' | 'south' | 'east' | 'west';
 
-// Rover as a class -- more common than the verbose version above, also found in Angular that expects classes
+// Rover as a class -- more common than the verbose version below; also found in Angular that expects classes
 export class Rover {
     x:number;
     y:number;
@@ -27,6 +27,23 @@ export class Rover {
             case 'west':
                 this.x--;
                 break;
+        }
+    }
+    
+    turnLeft() : void {
+        switch (this.direction) {
+            case 'north':
+                this.direction = 'west';
+                break;
+            case 'south':
+                this.direction = 'east';
+                break;
+            case 'east':
+                this.direction = 'north';
+                break;
+            case 'west':
+                this.direction = 'south'
+                break
         }
     }
 }
