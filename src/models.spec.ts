@@ -10,41 +10,19 @@ describe("rover model", () => {
         expect(rover.direction).toBe('north');
     })
     
-    it("when moving forward and facing north, y value increases", () => {
-        const r:Rover = new Rover(0, 0, 'north');
+    it.each([
+        ['north', 0, 1],
+        ['south', 0, -1],
+        ['east', 1, 0],
+        ['west', -1, 0]
+    ] as [Direction, number, number][])("when facing %s and moving forward, position changes to (%d, %d)", (direction, x, y) => {
+        const r:Rover = new Rover(0, 0, direction);
         
         r.moveForward();
-
-        const expected = new Rover(0, 1, 'north');
+        
+        const expected = new Rover(x, y, direction);
         expect(r).toEqual(expected);
-    })
-
-    it("when moving forward and facing south, y value decreases", () => {
-        const r:Rover = new Rover(0, 0, 'south');
-
-        r.moveForward();
-
-        const expected = new Rover(0, -1, 'south');
-        expect(r).toEqual(expected);
-    })
-
-    it("when moving forward and facing east, x value increases", () => {
-        const r:Rover = new Rover(0, 0, 'east');
-
-        r.moveForward();
-
-        const expected = new Rover(1, 0, 'east');
-        expect(r).toEqual(expected);
-    })
-
-    it("when moving forward and facing west, x value decreases", () => {
-        const r:Rover = new Rover(0, 0, 'west');
-
-        r.moveForward();
-
-        const expected = new Rover(-1, 0, 'west');
-        expect(r).toEqual(expected);
-    })
+    });
     
     it.each([
         ['north', 'west'],
